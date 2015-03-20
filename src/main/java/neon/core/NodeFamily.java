@@ -57,6 +57,10 @@ public class NodeFamily<T extends Node> {
         return index;
     }
 
+    public Class<T> getNodeClass() {
+        return nodeClass;
+    }
+
     public T get(Entity entity) {
         return ClassReflection.newProxyInstance(nodeClass, new NodeProxyHandler(entity));
     }
@@ -69,23 +73,6 @@ public class NodeFamily<T extends Node> {
             }
         }
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return nodeClass.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        NodeFamily that = (NodeFamily) o;
-        return nodeClass.equals(that.nodeClass);
     }
 
     private static final class NodeProxyHandler implements InvocationHandler {
@@ -137,5 +124,20 @@ public class NodeFamily<T extends Node> {
         public int hashCode() {
             return entity.hashCode();
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return nodeClass.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        NodeFamily that = (NodeFamily) o;
+
+        return nodeClass.equals(that.nodeClass);
     }
 }

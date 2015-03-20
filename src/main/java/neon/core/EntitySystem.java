@@ -6,9 +6,8 @@ import neon.event.Signal;
 
 public abstract class EntitySystem {
 
-    int priority;
+    final int priority;
     private boolean enabled;
-
     Engine engine;
 
     public EntitySystem() {
@@ -20,13 +19,17 @@ public abstract class EntitySystem {
         this.enabled = true;
     }
 
-    public void initialized() {
+    public void addedToEngine() {
     }
 
-    public void addedToEngine(Engine engine) {
+    public void initialize() {
     }
 
     public void update(float deltaTime) {
+    }
+
+    public final Engine getEngine() {
+        return engine;
     }
 
     public final boolean isEnabled() {
@@ -37,11 +40,11 @@ public abstract class EntitySystem {
         this.enabled = enabled;
     }
 
-    public <T> Signal<T> signal(Class<T> type) {
+    public final <T> Signal<T> signal(Class<T> type) {
         return engine.signal(type);
     }
 
-    public <T extends EventListener> Event<T> event(Class<T> listenerType) {
+    public final <T extends EventListener> Event<T> event(Class<T> listenerType) {
         return engine.event(listenerType);
     }
 }

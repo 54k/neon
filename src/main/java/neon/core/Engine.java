@@ -156,7 +156,7 @@ public class Engine {
             systems.add(system);
             systemsByClass.put(systemType, system);
             system.engine = this;
-            system.addedToEngine(this);
+            system.addedToEngine();
             Collections.sort(systems, systemComparator);
         }
     }
@@ -277,7 +277,7 @@ public class Engine {
         initialized = true;
         processSystems();
         for (EntitySystem system : systems) {
-            system.initialized();
+            system.initialize();
         }
     }
 
@@ -460,7 +460,7 @@ public class Engine {
             if (!belongsToNode && matches) {
                 Node node = nodeFamily.get(entity);
                 nodeEntities.add(node);
-                nodeCaches.get(entity).put(node);
+                nodeCaches.get(entity).put(nodeFamily.getNodeClass(), node);
                 entity.getNodeBits().set(nodeIndex);
                 notifyNodeListenersAdd(nodeFamily, node);
             } else if (belongsToNode && !matches) {
@@ -534,7 +534,7 @@ public class Engine {
             for (Entity e : entities) {
                 if (nodeFamily.matches(e)) {
                     T node = nodeFamily.get(e);
-                    nodeCaches.get(e).put(node);
+                    nodeCaches.get(e).put(nodeFamily.getNodeClass(), node);
                     nodeEntities.add(node);
                     e.getNodeBits().set(nodeFamily.getIndex());
                 }

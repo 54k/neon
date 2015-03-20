@@ -1,7 +1,6 @@
 package neon.system;
 
 import neon.core.Aspect;
-import neon.core.Engine;
 import neon.core.Entity;
 import neon.util.ImmutableList;
 
@@ -20,8 +19,8 @@ public abstract class IntervalAspectSystem extends IntervalSystem {
     }
 
     @Override
-    public void addedToEngine(Engine engine) {
-        entities = engine.getEntitiesFor(aspect);
+    public void addedToEngine() {
+        entities = getEngine().getEntitiesFor(aspect);
     }
 
     @Override

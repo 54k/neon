@@ -1,6 +1,5 @@
 package neon.system;
 
-import neon.core.Engine;
 import neon.core.EntitySystem;
 import neon.core.Node;
 import neon.util.ImmutableList;
@@ -26,8 +25,8 @@ abstract class NodeSystem<T extends Node> extends EntitySystem {
     }
 
     @Override
-    public void addedToEngine(Engine engine) {
-        nodes = engine.getNodesFor(nodeClass);
+    public void addedToEngine() {
+        nodes = getEngine().getNodesFor(nodeClass);
     }
 
     public final ImmutableList<T> getNodes() {

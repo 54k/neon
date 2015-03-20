@@ -1,7 +1,6 @@
 package neon.system;
 
 import neon.core.Aspect;
-import neon.core.Engine;
 import neon.core.Entity;
 import neon.core.EntitySystem;
 import neon.util.ImmutableList;
@@ -21,8 +20,8 @@ public abstract class IteratingAspectSystem extends EntitySystem {
     }
 
     @Override
-    public void addedToEngine(Engine engine) {
-        entities = engine.getEntitiesFor(aspect);
+    public void addedToEngine() {
+        entities = getEngine().getEntitiesFor(aspect);
     }
 
     @Override

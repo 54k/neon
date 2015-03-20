@@ -8,11 +8,11 @@ public class NodeSystemTest extends Assert {
 
     @Test
     public void testNodeSystemTypeDiscovery() throws Exception {
-        Class<MyNode> nodeClass = new NodeSystem<MyNode>() {
+        Class<TestNode> nodeClass = new NodeSystem<TestNode>() {
         }.getNodeClass();
-        assertSame(nodeClass, MyNode.class);
+        assertSame(nodeClass, TestNode.class);
     }
 
-    interface MyNode extends Node {
+    interface TestNode extends Node {
     }
 }
