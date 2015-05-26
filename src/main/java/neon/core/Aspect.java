@@ -4,7 +4,7 @@ import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Aspect {
+public final class Aspect {
 
     private static int aspectIndex = 0;
 
@@ -53,33 +53,33 @@ public class Aspect {
     }
 
     @SafeVarargs
-    public static Builder all(Class<? extends Component>... componentTypes) {
-        return builder.reset().all(componentTypes);
+    public static Builder allOf(Class<? extends Component>... componentTypes) {
+        return builder.reset().allOf(componentTypes);
     }
 
     @SafeVarargs
-    public static Builder allNodes(Class<? extends Node>... nodeClasses) {
-        return builder.reset().allNodes(nodeClasses);
+    public static Builder allOfNodes(Class<? extends Node>... nodeClasses) {
+        return builder.reset().allOfNodes(nodeClasses);
     }
 
     @SafeVarargs
-    public static Builder one(Class<? extends Component>... componentTypes) {
-        return builder.reset().one(componentTypes);
+    public static Builder oneOf(Class<? extends Component>... componentTypes) {
+        return builder.reset().oneOf(componentTypes);
     }
 
     @SafeVarargs
-    public static Builder oneNodes(Class<? extends Node>... nodeClasses) {
-        return builder.reset().oneNodes(nodeClasses);
+    public static Builder oneOfNodes(Class<? extends Node>... nodeClasses) {
+        return builder.reset().oneOfNodes(nodeClasses);
     }
 
     @SafeVarargs
-    public static Builder exclude(Class<? extends Component>... componentTypes) {
-        return builder.reset().exclude(componentTypes);
+    public static Builder excludeOf(Class<? extends Component>... componentTypes) {
+        return builder.reset().excludeOf(componentTypes);
     }
 
     @SafeVarargs
-    public static Builder excludeNodes(Class<? extends Node>... nodeClasses) {
-        return builder.reset().excludeNodes(nodeClasses);
+    public static Builder excludeOfNodes(Class<? extends Node>... nodeClasses) {
+        return builder.reset().excludeOfNodes(nodeClasses);
     }
 
     public static class Builder {
@@ -95,13 +95,13 @@ public class Aspect {
         }
 
         @SafeVarargs
-        public final Builder all(Class<? extends Component>... componentClasses) {
+        public final Builder allOf(Class<? extends Component>... componentClasses) {
             BitSet bits = ComponentType.getBitsFor(componentClasses);
             return all(bits);
         }
 
         @SafeVarargs
-        public final Builder allNodes(Class<? extends Node>... nodeClasses) {
+        public final Builder allOfNodes(Class<? extends Node>... nodeClasses) {
             BitSet bits = NodeFamily.getBitsFor(nodeClasses);
             return all(bits);
         }
@@ -113,13 +113,13 @@ public class Aspect {
         }
 
         @SafeVarargs
-        public final Builder one(Class<? extends Component>... componentClasses) {
+        public final Builder oneOf(Class<? extends Component>... componentClasses) {
             BitSet bits = ComponentType.getBitsFor(componentClasses);
             return one(bits);
         }
 
         @SafeVarargs
-        public final Builder oneNodes(Class<? extends Node>... nodeClasses) {
+        public final Builder oneOfNodes(Class<? extends Node>... nodeClasses) {
             BitSet bits = NodeFamily.getBitsFor(nodeClasses);
             return one(bits);
         }
@@ -131,13 +131,13 @@ public class Aspect {
         }
 
         @SafeVarargs
-        public final Builder exclude(Class<? extends Component>... componentClasses) {
+        public final Builder excludeOf(Class<? extends Component>... componentClasses) {
             BitSet bits = ComponentType.getBitsFor(componentClasses);
             return exclude(bits);
         }
 
         @SafeVarargs
-        public final Builder excludeNodes(Class<? extends Node>... nodeClasses) {
+        public final Builder excludeOfNodes(Class<? extends Node>... nodeClasses) {
             BitSet bits = NodeFamily.getBitsFor(nodeClasses);
             return exclude(bits);
         }

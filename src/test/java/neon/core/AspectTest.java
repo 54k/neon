@@ -25,12 +25,12 @@ public class AspectTest extends Assert {
 
     @SafeVarargs
     private static Aspect getAspectForAll(Class<? extends Component>... componentClasses) {
-        return Aspect.all(componentClasses).get();
+        return Aspect.allOf(componentClasses).get();
     }
 
     @SafeVarargs
     private static Aspect getAspectForAllNodes(Class<? extends Node>... nodeClasses) {
-        return Aspect.allNodes(nodeClasses).get();
+        return Aspect.allOfNodes(nodeClasses).get();
     }
 
     private static class A extends Component {
